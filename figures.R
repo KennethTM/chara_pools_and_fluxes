@@ -33,7 +33,7 @@ fig_3_a <- fig_3_a_b_data %>%
   theme(axis.text.x = element_blank(),
         strip.text = element_blank(),
         legend.title = element_blank(),
-        legend.position = c(0.8, 0.8))
+        legend.position = c(0.9, 0.8))
 
 fig_3_b <- fig_3_a_b_data %>%
   filter(variable != "perc_plant") %>% 
@@ -60,21 +60,21 @@ fig_3_c <- fig_3_c_data %>%
   geom_col(col = "black")+
   scale_fill_manual(values = c("grey", "white"), labels = c("Tissue", "Encrustation"))+
   geom_text(aes(label = label, group = variable),
-            position = position_stack(vjust = 0.5))+
+            position = position_stack(vjust = 0.5), size = 3)+
   facet_grid(.~year, scales = "free")+
   ylab(expression("Biomass (g DW"~m^{-2}*")"))+
   theme(strip.text = element_blank())+
   xlab(NULL)+
   theme(legend.title = element_blank(),
-        legend.position = c(0.8, 0.8))
+        legend.position = c(0.8, 0.7))
 
 fig_3 <- rbind(ggplotGrob(fig_3_a), ggplotGrob(fig_3_b), ggplotGrob(fig_3_c), size = "last")
 
 grid.newpage()
 grid.arrange(fig_3)
 
-ggsave(paste0(fig_path, "fig_3.png"), grid.arrange(fig_3), width = 174, height = 180, units = "mm")
-ggsave(paste0(fig_path, "fig_3.svg"), grid.arrange(fig_3), width = 174, height = 180, units = "mm")
+ggsave(paste0(fig_path, "fig_3.png"), grid.arrange(fig_3), width = 140, height = 160, units = "mm")
+ggsave(paste0(fig_path, "fig_3.svg"), grid.arrange(fig_3), width = 140, height = 160, units = "mm")
 
 #Figur 4
 fig_4 <- fig_4_data[-1,] %>% 
@@ -96,8 +96,8 @@ fig_4 <- fig_4_data[-1,] %>%
         legend.title = element_blank(),
         legend.position = c(0.8, 0.8))
 
-ggsave(paste0(fig_path, "fig_4.png"), fig_4, width = 174, height = 84, units = "mm")
-ggsave(paste0(fig_path, "fig_4.svg"), fig_4, width = 174, height = 84, units = "mm")
+ggsave(paste0(fig_path, "fig_4.png"), fig_4, width = 140, height = 80, units = "mm")
+ggsave(paste0(fig_path, "fig_4.svg"), fig_4, width = 140, height = 80, units = "mm")
 
 #Figur 5
 fig_5_a <- fig_5_data %>% 
@@ -115,7 +115,7 @@ fig_5_a <- fig_5_data %>%
   theme(axis.text.x = element_blank(),
         strip.text = element_blank(),
         legend.title = element_blank(),
-        legend.position = c(0.85, 0.8))
+        legend.position = c(0.9, 0.8))
 
 fig_5_b <- fig_5_data %>% 
   filter(variable == "p_algae") %>% 
@@ -161,7 +161,7 @@ fig_5_d <- fig_5_data %>%
   geom_col(col = "black")+
   scale_fill_manual(values = c("grey", "white"), labels = c("Tissue", "Encrustation"))+
   geom_text(aes(label = label, group = variable),
-            position = position_stack(vjust = 0.5))+
+            position = position_stack(vjust = 0.5), size = 3)+
   facet_grid(.~year, scales = "free")+
   ylab(expression("Areal P (mg P"~m^{-2}*")"))+
   theme(strip.text = element_blank())+
@@ -174,8 +174,8 @@ fig_5 <- rbind(ggplotGrob(fig_5_a), ggplotGrob(fig_5_b), ggplotGrob(fig_5_c), gg
 grid.newpage()
 grid.arrange(fig_5)
 
-ggsave(paste0(fig_path, "fig_5.png"), grid.arrange(fig_5), width = 174, height = 234, units = "mm")
-ggsave(paste0(fig_path, "fig_5.svg"), grid.arrange(fig_5), width = 174, height = 234, units = "mm")
+ggsave(paste0(fig_path, "fig_5.png"), grid.arrange(fig_5), width = 140, height = 215, units = "mm")
+ggsave(paste0(fig_path, "fig_5.svg"), grid.arrange(fig_5), width = 140, height = 215, units = "mm")
 
 #Figure 6
 shapiro.test(p_crust_algae$p_algae)
@@ -195,8 +195,8 @@ p_crust_algae_fig <- p_crust_algae %>%
   xlab(expression(sqrt(P[algae])~"("*mu*g~P~mg~DW^{-1}*")"))+
   ylab(expression(sqrt(P[crust])~"("*mu*g~P~mg~DW^{-1}*")"))
 
-ggsave(paste0(fig_path, "fig_6.png"), p_crust_algae_fig, width = 84, height = 84, units = "mm")
-ggsave(paste0(fig_path, "fig_6.svg"), p_crust_algae_fig, width = 84, height = 84, units = "mm")
+ggsave(paste0(fig_path, "fig_6.png"), p_crust_algae_fig, width = 90, height = 90, units = "mm")
+ggsave(paste0(fig_path, "fig_6.svg"), p_crust_algae_fig, width = 90, height = 90, units = "mm")
 
 #Figure S1
 shapiro.test(fig_s1_data$calcium)
@@ -217,5 +217,5 @@ fig_s1 <- fig_s1_data %>%
   ylab(expression(Ca^{"2+"}~(meq~g~DW^{-1}~d^{-1})))+
   xlab(expression(ANC~(meq~g~DW^{-1}~d^{-1})))
 
-ggsave(paste0(fig_path, "fig_s1.png"), fig_s1, width = 84, height = 84, units = "mm")
-ggsave(paste0(fig_path, "fig_s1.svg"), fig_s1, width = 84, height = 84, units = "mm")
+ggsave(paste0(fig_path, "fig_s1.png"), fig_s1, width = 90, height = 90, units = "mm")
+ggsave(paste0(fig_path, "fig_s1.svg"), fig_s1, width = 90, height = 90, units = "mm")
