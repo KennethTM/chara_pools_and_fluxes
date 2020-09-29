@@ -27,15 +27,15 @@ pairs(marginal, simple = list("algae_part", "year", c("algae_part", "year")), ad
 
 #Average biomass in spring vs summer
 #Mann-whitney u test
-wilcox.test(fig_2_c_data[fig_2_c_data$year == "2018",]$chara,
-            fig_2_c_data[fig_2_c_data$year == "2019",]$chara)
+wilcox.test(fig_3_c_data[fig_3_c_data$year == "2018",]$chara,
+            fig_3_c_data[fig_3_c_data$year == "2019",]$chara)
 
-wilcox.test(fig_2_c_data[fig_2_c_data$year == "2018",]$surface,
-            fig_2_c_data[fig_2_c_data$year == "2019",]$surface)
+wilcox.test(fig_3_c_data[fig_3_c_data$year == "2018",]$surface,
+            fig_3_c_data[fig_3_c_data$year == "2019",]$surface)
 
 
 #Calcium release in apical and basal parts with varying ph
-ca_release_data <- fig_3_data[-1,]
+ca_release_data <- fig_4_data[-1,]
 
 shapiro.test(ca_release_data$ca_ueq)
 shapiro.test(log(ca_release_data$ca_ueq))

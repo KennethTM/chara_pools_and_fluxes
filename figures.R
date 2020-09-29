@@ -16,8 +16,8 @@ site_names <- tribble(~site, ~site_new,
                       "Snogedam", "4") %>%
   mutate(site_new = factor(site_new, levels = as.character(1:10)))
 
-#Figure 2
-fig_2_a <- fig_2_a_b_data %>%
+#Figure 3
+fig_3_a <- fig_3_a_b_data %>%
   filter(variable == "perc_plant") %>% 
   left_join(site_names) %>% 
   ggplot(aes(x = site_new, y = mean, fill = shoot))+
@@ -35,7 +35,7 @@ fig_2_a <- fig_2_a_b_data %>%
         legend.title = element_blank(),
         legend.position = c(0.8, 0.8))
 
-fig_2_b <- fig_2_a_b_data %>%
+fig_3_b <- fig_3_a_b_data %>%
   filter(variable != "perc_plant") %>% 
   left_join(site_names) %>% 
   ggplot(aes(x = site_new, y = mean, fill = shoot))+
@@ -50,9 +50,8 @@ fig_2_b <- fig_2_a_b_data %>%
   theme(axis.text.x = element_blank(),
         strip.text = element_blank())
 
-fig_2_c_data <- read.delim2(paste0(data_path, "fig_2_c.txt"))
 
-fig_2_c <- fig_2_c_data %>% 
+fig_3_c <- fig_3_c_data %>% 
   gather(variable, value, chara, surface) %>% 
   mutate(perc = value/total*100,
          label = ifelse(variable == "chara", NA, paste0(round(perc, 0), " %"))) %>% 
@@ -69,16 +68,16 @@ fig_2_c <- fig_2_c_data %>%
   theme(legend.title = element_blank(),
         legend.position = c(0.8, 0.8))
 
-fig_2 <- rbind(ggplotGrob(fig_2_a), ggplotGrob(fig_2_b), ggplotGrob(fig_2_c), size = "last")
+fig_3 <- rbind(ggplotGrob(fig_3_a), ggplotGrob(fig_3_b), ggplotGrob(fig_3_c), size = "last")
 
 grid.newpage()
-grid.arrange(fig_2)
+grid.arrange(fig_3)
 
-ggsave(paste0(fig_path, "fig_2.png"), grid.arrange(fig_2), width = 174, height = 180, units = "mm")
-ggsave(paste0(fig_path, "fig_2.svg"), grid.arrange(fig_2), width = 174, height = 180, units = "mm")
+ggsave(paste0(fig_path, "fig_3.png"), grid.arrange(fig_3), width = 174, height = 180, units = "mm")
+ggsave(paste0(fig_path, "fig_3.svg"), grid.arrange(fig_3), width = 174, height = 180, units = "mm")
 
-#Figur 3
-fig_3 <- fig_3_data[-1,] %>% 
+#Figur 4
+fig_4 <- fig_4_data[-1,] %>% 
   select(-ca_ug) %>% 
   gather(variable, value, ca_ueq, alk_ueq) %>% 
   ggplot(aes(x = ph, y = value, shape = variable))+
@@ -97,11 +96,11 @@ fig_3 <- fig_3_data[-1,] %>%
         legend.title = element_blank(),
         legend.position = c(0.8, 0.8))
 
-ggsave(paste0(fig_path, "fig_3.png"), fig_3, width = 174, height = 84, units = "mm")
-ggsave(paste0(fig_path, "fig_3.svg"), fig_3, width = 174, height = 84, units = "mm")
+ggsave(paste0(fig_path, "fig_4.png"), fig_4, width = 174, height = 84, units = "mm")
+ggsave(paste0(fig_path, "fig_4.svg"), fig_4, width = 174, height = 84, units = "mm")
 
-#Figur 4
-fig_4_a <- fig_4_data %>% 
+#Figur 5
+fig_5_a <- fig_5_data %>% 
   filter(variable == "p_tot") %>% 
   left_join(site_names) %>% 
   ggplot(aes(x = site_new, y = mean, fill = shoot))+
@@ -118,7 +117,7 @@ fig_4_a <- fig_4_data %>%
         legend.title = element_blank(),
         legend.position = c(0.85, 0.8))
 
-fig_4_b <- fig_4_data %>% 
+fig_5_b <- fig_5_data %>% 
   filter(variable == "p_algae") %>% 
   left_join(site_names) %>% 
   ggplot(aes(x = site_new, y = mean, fill = shoot))+
@@ -134,7 +133,7 @@ fig_4_b <- fig_4_data %>%
         legend.title = element_blank(),
         legend.position = c(0.85, 0.8))
 
-fig_4_c <- fig_4_data %>% 
+fig_5_c <- fig_5_data %>% 
   filter(variable == "p_precip") %>% 
   left_join(site_names) %>% 
   ggplot(aes(x = site_new, y = mean, fill = shoot))+
@@ -149,7 +148,7 @@ fig_4_c <- fig_4_data %>%
         legend.title = element_blank(),
         legend.position = c(0.85, 0.8))
 
-fig_4_d <- fig_4_data %>% 
+fig_5_d <- fig_5_data %>% 
   filter(variable %in% c("p_algae_area", "p_precip_area")) %>% 
   select(-sd, -shoot) %>% 
   spread(variable, mean) %>% 
@@ -170,15 +169,15 @@ fig_4_d <- fig_4_data %>%
   theme(legend.title = element_blank(),
         legend.position = c(0.8, 0.8))
 
-fig_4 <- rbind(ggplotGrob(fig_4_a), ggplotGrob(fig_4_b), ggplotGrob(fig_4_c), ggplotGrob(fig_4_d), size = "last")
+fig_5 <- rbind(ggplotGrob(fig_5_a), ggplotGrob(fig_5_b), ggplotGrob(fig_5_c), ggplotGrob(fig_5_d), size = "last")
 
 grid.newpage()
-grid.arrange(fig_4)
+grid.arrange(fig_5)
 
-ggsave(paste0(fig_path, "fig_4.png"), grid.arrange(fig_4), width = 174, height = 234, units = "mm")
-ggsave(paste0(fig_path, "fig_4.svg"), grid.arrange(fig_4), width = 174, height = 234, units = "mm")
+ggsave(paste0(fig_path, "fig_5.png"), grid.arrange(fig_5), width = 174, height = 234, units = "mm")
+ggsave(paste0(fig_path, "fig_5.svg"), grid.arrange(fig_5), width = 174, height = 234, units = "mm")
 
-#Figure 5
+#Figure 6
 shapiro.test(p_crust_algae$p_algae)
 shapiro.test(p_crust_algae$p_crust)
 shapiro.test(sqrt(p_crust_algae$p_algae))
@@ -196,8 +195,8 @@ p_crust_algae_fig <- p_crust_algae %>%
   xlab(expression(sqrt(P[algae])~"("*mu*g~P~mg~DW^{-1}*")"))+
   ylab(expression(sqrt(P[crust])~"("*mu*g~P~mg~DW^{-1}*")"))
 
-ggsave(paste0(fig_path, "fig_5.png"), p_crust_algae_fig, width = 84, height = 84, units = "mm")
-ggsave(paste0(fig_path, "fig_5.svg"), p_crust_algae_fig, width = 84, height = 84, units = "mm")
+ggsave(paste0(fig_path, "fig_6.png"), p_crust_algae_fig, width = 84, height = 84, units = "mm")
+ggsave(paste0(fig_path, "fig_6.svg"), p_crust_algae_fig, width = 84, height = 84, units = "mm")
 
 #Figure S1
 shapiro.test(fig_s1_data$calcium)

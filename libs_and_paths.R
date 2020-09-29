@@ -9,9 +9,10 @@ data_path <- paste0(getwd(), "/data/")
 fig_path <- paste0(getwd(), "/figures/")
 
 #Load data
-fig_2_a_b_data <- read.delim2(paste0(data_path, "fig_2_a_b.txt"))
-fig_3_data <- read.delim2(paste0(data_path, "fig_3.txt"))
+fig_3_a_b_data <- read.delim2(paste0(data_path, "fig_3_a_b.txt"))
+fig_3_c_data <- read.delim2(paste0(data_path, "fig_3_c.txt"))
 fig_4_data <- read.delim2(paste0(data_path, "fig_4.txt"))
+fig_5_data <- read.delim2(paste0(data_path, "fig_5.txt"))
 fig_s1_data <- read.delim2(paste0(data_path, "fig_s1.txt"))
 
 p_crust_algae <- tribble(~p_algae, ~p_crust,
