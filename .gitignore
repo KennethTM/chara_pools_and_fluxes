@@ -1,0 +1,7 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+Oland_pools_paper/
+data/
+figures/*.svg
