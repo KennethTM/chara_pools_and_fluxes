@@ -190,8 +190,8 @@ confint(p_crust_algae_lm)
 
 p_crust_algae_fig <- p_crust_algae %>% 
   ggplot(aes(y=sqrt(p_crust), x=sqrt(p_algae)))+
-  geom_point(shape = 1)+
   geom_smooth(method="lm", col = "black")+
+  geom_point(shape = 1)+
   xlab(expression(sqrt(P[algae])~"("*mu*g~P~mg~DW^{-1}*")"))+
   ylab(expression(sqrt(P[crust])~"("*mu*g~P~mg~DW^{-1}*")"))
 
